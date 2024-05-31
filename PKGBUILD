@@ -12,8 +12,8 @@ pkgrel=1
 pkgdesc="A stand-alone Blender Network Renderer"
 arch=("x86_64")
 url="https://github.com/lyze237-forks/LogicReinc.BlendFarm"
-license=('GPL-3.0')
-depends=("icu")
+license=('GPL-3.0-only')
+depends=("icu fontconfig ttf-dejavu libgdiplus glibc")
 makedepends=("dotnet-sdk-6.0")
 options=("!debug" "!strip")
 source=("$url/archive/$_hash.tar.gz" "LogicReinc.BlendFarm.desktop" "LogicReinc.BlendFarm.Server.desktop")
@@ -47,11 +47,11 @@ package_logicreinc.blendfarm.server() {
 	install -dm777 $pkgdir/opt/LogicReinc.BlendFarm
 	install -d $pkgdir/usr/{bin,lib}
 
-	install -Dm 755 -t "$pkgdir/usr/share/applications" LogicReinc.BlendFarm.Server.desktop 
+	install -Dm555 -t "$pkgdir/usr/share/applications" LogicReinc.BlendFarm.Server.desktop 
 
 	cd "$_name-$_hash/out/server"
 
-	install -Dm755 -t "$pkgdir/usr/lib/$pkgname" LogicReinc.BlendFarm.Server LogicReinc.BlendFarm.Server.pdb LogicReinc.BlendFarm.Shared.pdb peek.py
+	install -Dm555 -t "$pkgdir/usr/lib/$pkgname" LogicReinc.BlendFarm.Server LogicReinc.BlendFarm.Server.pdb LogicReinc.BlendFarm.Shared.pdb peek.py
 	ln -s "/usr/lib/$pkgname/$_name.Server" "$pkgdir/usr/bin/$pkgname"
 }
 
@@ -59,11 +59,11 @@ package_logicreinc.blendfarm() {
 	install -dm777 $pkgdir/opt/LogicReinc.BlendFarm
 	install -d $pkgdir/usr/{bin,lib}
 
-	install -Dm 755 -t "$pkgdir/usr/share/applications" LogicReinc.BlendFarm.desktop 
+	install -Dm555 -t "$pkgdir/usr/share/applications" LogicReinc.BlendFarm.desktop 
 
 	cd "$_name-$_hash/out/client"
 
-	install -Dm755 -t "$pkgdir/usr/lib/$pkgname" libHarfBuzzSharp.so libSkiaSharp.so LogicReinc.BlendFarm LogicReinc.BlendFarm.Client.pdb LogicReinc.BlendFarm.pdb LogicReinc.BlendFarm.Shared.pdb peek.py
-	install -Dm755 -t "$pkgdir/usr/lib/$pkgname/Images" Images/LogicReinc.BlendFarm.icns Images/render.ico
+	install -Dm555 -t "$pkgdir/usr/lib/$pkgname" libHarfBuzzSharp.so libSkiaSharp.so LogicReinc.BlendFarm LogicReinc.BlendFarm.Client.pdb LogicReinc.BlendFarm.pdb LogicReinc.BlendFarm.Shared.pdb peek.py
+	install -Dm555 -t "$pkgdir/usr/lib/$pkgname/Images" Images/LogicReinc.BlendFarm.icns Images/render.ico
 	ln -s "/usr/lib/$pkgname/$_name" "$pkgdir/usr/bin/$pkgname"
 }
