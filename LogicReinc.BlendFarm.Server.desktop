@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=
+Exec=/usr/bin/logicreinc.blendfarm.server
+GenericName=\sA stand-alone Blender Network Renderer\s
+Icon=/usr/lib/logicreinc.blendfarm/Images/render.ico
+Name=LogicReinc.BlendFarm.Server
+NoDisplay=false
+Path=/opt/LogicReinc.BlendFarm
+StartupNotify=true
+Terminal=true
+TerminalOptions=
+Type=Application
+
