@@ -13,11 +13,17 @@ pkgdesc="A stand-alone Blender Network Renderer"
 arch=("x86_64")
 url="https://github.com/lyze237-forks/LogicReinc.BlendFarm"
 license=('GPL-3.0-only')
-depends=("icu fontconfig ttf-dejavu libgdiplus glibc")
+depends=("icu" "fontconfig" "ttf-dejavu" "libgdiplus" "glibc")
 makedepends=("dotnet-sdk-6.0")
 options=("!debug" "!strip")
-source=("$url/archive/$_hash.tar.gz" "LogicReinc.BlendFarm.desktop" "LogicReinc.BlendFarm.Server.desktop")
-sha256sums=("0f0f33c9bc1c460ead9bc007c9f62c5a91d4d7bf6628f2f553788b22d862e40e" "cae3df681d888fd02e3817d0aa5c73f7bd8c2ef809c47869923663b6c75813d3" "5321331206e32cb6cdeb7b439c8265d71e9cef7457fbf5463add19b658412f0a")
+source=("$url/archive/$_hash.tar.gz" "LogicReinc.BlendFarm.desktop" "LogicReinc.BlendFarm.Server.desktop" "Remove_weird_file_explorer.patch")
+sha256sums=("0f0f33c9bc1c460ead9bc007c9f62c5a91d4d7bf6628f2f553788b22d862e40e" "cae3df681d888fd02e3817d0aa5c73f7bd8c2ef809c47869923663b6c75813d3" "5321331206e32cb6cdeb7b439c8265d71e9cef7457fbf5463add19b658412f0a" "ffd349ea01a7eed84c9c94eb1b19c6e2ecfe4c0023114da5d85741a31bc24a2f")
+
+prepare() {
+	cd "$_name-$_hash"
+
+	patch --strip=1 --input="../Remove_weird_file_explorer.patch"
+}
 
 build() {
 	cd "$_name-$_hash/$_name"
